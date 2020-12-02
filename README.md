@@ -1,5 +1,3 @@
 # Viman-Dead_Reckoning
 
-There are 2 two different folders here: Arduino & Python.
-
-In Arduino folder, you will 
+This dead reckoning, estimates both orientation as well as displacement. The orientation is pretty much stable were as the distance is very much like the name dead.
