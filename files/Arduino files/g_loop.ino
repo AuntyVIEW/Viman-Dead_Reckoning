@@ -19,7 +19,7 @@ void loop()
   {
     sinceLastIMUCheck -= IMU_CHECK_INTERVAL_MSEC;
     Serial.print(out[0]); // Printing Distance travelled along X-axis
-    Serial.print(",");    // For visualizing in oython, comment this and above line
+    Serial.print(",");    // For visualizing in python, comment this and above line
     Serial.print(out[1]); 
     Serial.print(",");
     Serial.print(out[2]);

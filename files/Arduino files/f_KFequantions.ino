@@ -11,8 +11,8 @@ void kalman(){
   
   // Step-3: Update
   aKk = aPkk1/(aPkk1 + aRk); // Kalman gain matrix
-  aXk = aXkk1 + (aKk*ayk);           // Filtered state vector
-  aPk = (1 - aKk)*aPkk1;         // Covariance update
+  aXk = aXkk1 + (aKk*ayk);   // Filtered state vector
+  aPk = (1 - aKk)*aPkk1;     // Covariance update
 
   // Hard limiting acceleration
   if(fabs(aXk) <= 0.03){

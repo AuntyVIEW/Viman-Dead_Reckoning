@@ -19,22 +19,14 @@ yarrow = arrow(color = color.green, axis = vector(0,0,-1), length = 0.4, pos = v
 zarrow = arrow(color = color.blue,  axis = vector(0,1,0), length = 0.4, pos = vector(-4.2,-1.6,-0.2))
 mybox  = box(size = vector(1, 1, 1), pos = vector(0,0,0), axis = vector(1,0,0), color = color.yellow)
 
-
-
-# Conversion constants
-rad    = np.pi/180
-
-# Kalman filter constants
-Xk  = np.array([[0], [0]])   # Current state vector
-Xk1 = np.array([[0], [0]])     # Previous state vector
-
-
+dx = 0
+rad = np.pi/180
 
 # Continuosly acquiring data from arduino via serial port
 try:
     while (1==1):
 
-        rate(20)
+        rate(10)
 
         while(arduino.inWaiting()  > 0):
                 
@@ -44,21 +36,20 @@ try:
             # Removing unwanted charactetrs from the acquired data
             serdata  = str(serdata, 'utf-8')
 
+            
+            
             try:
                 # Splitting the acquired data into respective quantities
                 ds       = serdata.split(',')
                 
 
                 # Acceleration in X direction
-                ax       = float(ds[0])
-
-                # Acceleration in Y direction
-                ay       = float(ds[1])
+                dx       = float(ds[0])
 
                 # Euler angles
-                pitch    = float(ds[2])*rad # Rotation about Y-axis
-                yaw      = float(ds[3])*rad # Rotation about Z-axis
-                roll     = float(ds[4])*rad # Rotation about X-axi
+                pitch    = float(ds[1])*rad # Rotation about Y-axis
+                yaw      = float(ds[2])*rad # Rotation about Z-axis
+                roll     = float(ds[3])*rad # Rotation about X-axi
             
 
                 # Rotation Matrix about X-axis
@@ -85,6 +76,8 @@ try:
                 mybox.axis = vector(newvec1[0], newvec1[1], newvec1[2])
                 mybox.up   = vector(newvec2[0], newvec2[1], newvec2[2])
 
+                mybox.pos.x = dx
+                
             except:
                 break;
                            
